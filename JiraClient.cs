@@ -72,12 +72,14 @@ namespace AnotherJiraRestClient
         /// <returns>
         /// The issue with the specified key or null if no such issue was found.
         /// </returns>
-        public Issue GetIssue(string issueKey, IEnumerable<string> fields = null)
+        public Issue GetIssue(string issueKey, IEnumerable<string> fields = null, IEnumerable<string> expands = null)
         {
             var fieldsString = ToCommaSeparatedString(fields);
+
+            var expandsString = ToCommaSeparatedString(expands);
             
             var request = new RestRequest();
-            request.Resource = string.Format("{0}?fields={1}", ResourceUrls.IssueByKey(issueKey), fieldsString);
+            request.Resource = string.Format("{0}?fields={1}&expand={2}", ResourceUrls.IssueByKey(issueKey), fieldsString, expandsString);
             request.Method = Method.GET;
             
             var issue = Execute<Issue>(request, HttpStatusCode.OK);

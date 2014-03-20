@@ -57,6 +57,7 @@ namespace AnotherJiraRestClient
         public string id { get; set; }
         public string self { get; set; }
         public string key { get; set; }
+        public ChangeLog changelog { get; set; }
     }
 
     public class Fields
@@ -96,6 +97,7 @@ namespace AnotherJiraRestClient
         public Comments comment { get; set; }
         public int timeoriginalestimate { get; set; }
         public int aggregatetimespent { get; set; }
+        
     }
 
     public class Subtask
@@ -226,5 +228,39 @@ namespace AnotherJiraRestClient
         public string id { get; set; }
         public string name { get; set; }
         public string description { get; set; }
+    }
+
+    public class ChangeLog
+    {
+        public int total { get; set; }
+
+        public List<ChangeLogHistory> histories { get; set; }
+    }
+
+    public class ChangeLogHistory
+    {
+        public string id { get; set; }
+
+        public Author author { get; set; }
+
+        public string created { get; set; }
+
+        public List<ChangeLogHistoryItem> items { get; set; }
+
+    }
+
+    public class ChangeLogHistoryItem
+    {
+        public string field { get; set; }
+
+        public string fieldtype { get; set; }
+
+        public string from { get; set; }
+
+        public string fromString { get; set; }
+
+        public string to { get; set; }
+
+        public string toString { get; set; }
     }
 }
